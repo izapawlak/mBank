@@ -31,7 +31,7 @@ public class MainPage extends BasePage{
     @FindBy(css="#submenu-item-1 > ul")
     private WebElement submenu;
 
-    @FindBy(xpath="//ul[@class='submenu offer']/li[contains(@id, 'subsubmenu-item-')]")
+    @FindBy(xpath="(//ul[@class='submenu offer'])[1]/li[contains(@id, 'subsubmenu-item-')]/div[@role='none']/a")
     private List<WebElement> submenuOptions;
 
 /*    @FindBy(css = "li#submenu-item-2 > ul.submenu.offer")
