@@ -21,11 +21,19 @@ public class MainPageTests extends SetupTests {
     }
 
     @Test
-    public void openSubmenu(){
+    public void countSubmenu() {
         mainPage.accountClick()
                 .countSubmenuOptions()
+                .submnuOptionsNumber();
+    }
+    @Test
+    public void submenuVisibility(){
+        mainPage.accountClick()
                 .isSubmenuOpened();
     }
 
-
+    @Test
+    public void moveCreditSlider(){
+        mainPage.slideCreditAmountSlider();
+    }
 }

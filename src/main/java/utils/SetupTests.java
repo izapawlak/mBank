@@ -58,10 +58,10 @@ public class SetupTests {
         return new MainPage(driver);
     }
 
-/*    @AfterSuite(alwaysRun = true)
+    @AfterSuite(alwaysRun = true)
     protected void tearDownDriver() {
         driver.quit();
-    }*/
+    }
 
 
 }

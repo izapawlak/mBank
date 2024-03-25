@@ -1,8 +1,10 @@
 package pages;
 
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.Point;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 
 import java.util.List;
@@ -28,15 +30,14 @@ public class MainPage extends BasePage{
     @FindBy(css="#subsubmenu-item-1 > div > a")
     private WebElement privateAccounts;
 
-    @FindBy(css="#submenu-item-1 > ul")
+    @FindBy(xpath="(//div[@role = 'none'])[2]//following::ul[1]")
     private WebElement submenu;
 
     @FindBy(xpath="(//ul[@class='submenu offer'])[1]/li[contains(@id, 'subsubmenu-item-')]/div[@role='none']/a")
     private List<WebElement> submenuOptions;
 
-/*    @FindBy(css = "li#submenu-item-2 > ul.submenu.offer")
-    private WebElement submenuOpened;*/
-
+    @FindBy(xpath = "(//span[@class = 'ui-slider-handle ui-corner-all ui-state-default'])[1]")
+    private WebElement creditAmountSlider;
 
     /**
      *  * Verifies if the current page URL matches the expected URL ("https://skleptest.pl/").
@@ -60,6 +61,8 @@ public class MainPage extends BasePage{
      * Verifies if the submenu is currently opened and displayed on the page.
      */
     public void isSubmenuOpened(){
+        //WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(3));
+        //wait.until(ExpectedConditions.visibilityOf(submenu));
         assertTrue(submenu.isDisplayed());
     }
 
@@ -72,6 +75,28 @@ public class MainPage extends BasePage{
         accountBtn.click();
         int numberOfElements = submenuOptions.size();
         System.out.println("Liczba elementow: " + numberOfElements);
+        return this;
+    }
+
+    /**
+     * Verifies that the submenu has exactly 5 options available.
+     */
+    public void submnuOptionsNumber(){
+        assertEquals(5, submenuOptions.size());
+    }
+
+    /**
+     * Slides the credit amount slider to the right.
+     *
+     * @return MainPage
+     */
+    public MainPage slideCreditAmountSlider(){
+        Point sliderStartLocation1 = creditAmountSlider.getLocation();
+        System.out.println(sliderStartLocation1);
+        Actions actions = new Actions(driver);
+        actions.clickAndHold(creditAmountSlider).moveByOffset(100, 0).release().perform();
+        Point sliderStartLocation2 = creditAmountSlider.getLocation();
+        System.out.println(sliderStartLocation2);
         return this;
     }
 
