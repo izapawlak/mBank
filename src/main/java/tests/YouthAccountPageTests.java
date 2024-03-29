@@ -18,7 +18,9 @@ public class YouthAccountPageTests extends SetupTests {
 
     @Test
     public void goToYouthAccountPage(){
-        privateAccountPage.youthAccountClick()
+        mainPage.accountClick()
+                .privateAccountsClick()
+                .youthAccountClick()
                 .isYouthHeaderTextCorrect();
     }
 }
